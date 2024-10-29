@@ -473,4 +473,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a0e43ed7f46b5ff48b64210831c5d92e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  animator: {fileID: 3637415917317152294}
+  playerAnimator: {fileID: 3637415917317152294}
+  boxCol: {fileID: 3637415917317152298}
