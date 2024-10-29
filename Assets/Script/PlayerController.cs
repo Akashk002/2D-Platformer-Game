@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -12,21 +13,23 @@ public class PlayerController : MonoBehaviour
     private Vector2 boxColInitOffset;
 
     public float speed;
+    public float jump;
+    public Rigidbody2D rigidbody2D;
 
     private void Start()
     {
         //Fetching initial collider properties
         boxColInitSize = boxCol.size;
         boxColInitOffset = boxCol.offset;
+
+        rigidbody2D = GetComponent<Rigidbody2D>();
     }
     private void Update()
     {
         float horizontal = Input.GetAxis("Horizontal");
-        PlayMovementAnimation(horizontal);
-
-        float VerticalInput = Input.GetAxis("Vertical");
-
-        PlayJumpAnimation(VerticalInput);
+        float vertical = Input.GetAxisRaw("Jump");
+        PlayerMovementAnimation(horizontal, vertical);
+        PlayerMovement(horizontal, vertical);
 
         if (Input.GetKey(KeyCode.LeftControl))
         {
@@ -39,9 +42,22 @@ public class PlayerController : MonoBehaviour
 
     }
 
-    private void PlayMovementAnimation(float horizontal)
+    private void PlayerMovement(float horizontal, float vertical)
     {
+        Vector2 pos = transform.position;
+        pos.x += speed * horizontal * Time.deltaTime;
 
+        transform.position = pos;
+
+        if (vertical > 0)
+        {
+            rigidbody2D.AddForce(new Vector2(0, jump), ForceMode2D.Force);
+        }
+
+    }
+
+    private void PlayerMovementAnimation(float horizontal, float vertical)
+    {
         playerAnimator.SetFloat("Speed", Mathf.Abs(horizontal));
 
         Vector2 scale = transform.localScale;
@@ -56,6 +72,15 @@ public class PlayerController : MonoBehaviour
             scale.x = Mathf.Abs(scale.x);
         }
         transform.localScale = scale;
+
+        if (vertical > 0)
+        {
+            playerAnimator.SetBool("Jump", true);
+        }
+        else
+        {
+            playerAnimator.SetBool("Jump", false);
+        }
     }
 
     public void Crouch(bool crouch)
@@ -81,13 +106,5 @@ public class PlayerController : MonoBehaviour
 
         //Play Crouch animation
         playerAnimator.SetBool("Crouch", crouch);
-    }
-
-    public void PlayJumpAnimation(float vertical)
-    {
-        if (vertical > 0)
-        {
-            playerAnimator.SetTrigger("Jump");
-        }
     }
 }
