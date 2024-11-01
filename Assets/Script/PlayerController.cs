@@ -51,7 +51,7 @@ public class PlayerController : MonoBehaviour
 
         transform.position = pos;
 
-        if (vertical > 0 && isGrounded)
+        if ((vertical > 0 || Input.GetKey(KeyCode.Space)) && isGrounded)
         {
             rigidbody2D.AddForce(new Vector2(0, jumpForce), ForceMode2D.Force);
         }

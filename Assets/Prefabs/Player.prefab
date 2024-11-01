@@ -171,3 +171,6 @@ MonoBehaviour:
   playerAnimator: {fileID: 3637415917317152294}
   boxCol: {fileID: 3637415917317152298}
   speed: 4
+  jumpForce: 0
+  isGrounded: 0
+  rigidbody2D: {fileID: 0}
