@@ -7,12 +7,19 @@ public class PlayerController : MonoBehaviour
 {
     [SerializeField] private Animator playerAnimator;
     [SerializeField] private BoxCollider2D boxCol;
+    [SerializeField] private ScoreController scoreController;
 
     //Collider Variables
     private Vector2 boxColInitSize;
     private Vector2 boxColInitOffset;
 
     public float speed;
+
+    public void PickUpKey()
+    {
+        scoreController.IncreaseScore(10);
+    }
+
     public float jumpForce;
     public bool isGrounded = false;
     public Rigidbody2D rigidbody2D;
