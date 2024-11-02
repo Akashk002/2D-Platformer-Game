@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
@@ -9,6 +10,16 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private BoxCollider2D boxCol;
     [SerializeField] private ScoreController scoreController;
 
+    internal void KillPlayer()
+    {
+        Debug.Log("Player Kill");
+        ReloadGame();
+    }
+
+    void ReloadGame()
+    {
+        SceneManager.LoadScene(0);
+    }
     //Collider Variables
     private Vector2 boxColInitSize;
     private Vector2 boxColInitOffset;
