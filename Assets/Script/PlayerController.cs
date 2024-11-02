@@ -12,8 +12,9 @@ public class PlayerController : MonoBehaviour
 
     internal void KillPlayer()
     {
-        Debug.Log("Player Kill");
-        ReloadGame();
+        scoreController.DecreaseHeart();
+
+        if (scoreController.HeartOver()) ReloadGame();
     }
 
     void ReloadGame()

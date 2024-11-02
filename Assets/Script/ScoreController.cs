@@ -7,7 +7,8 @@ using TMPro;
 public class ScoreController : MonoBehaviour
 {
     public TMP_Text scoreText;
-    int score;
+    public TMP_Text heartText;
+    public int score, heart = 3;
 
     // Start is called before the first frame update
     void Start()
@@ -15,14 +16,30 @@ public class ScoreController : MonoBehaviour
         RefreshUI();
     }
 
-    internal void IncreaseScore(int val)
+    public void IncreaseScore(int val)
     {
         score += val;
         RefreshUI();
     }
 
+    public void DecreaseHeart()
+    {
+        heart--;
+        RefreshUI();
+    }
+
+    public bool HeartOver()
+    {
+        if (heart <= 0)
+        {
+            return true;
+        }
+        return false;
+    }
+
     void RefreshUI()
     {
         scoreText.text = "Score : " + score;
+        heartText.text = "Heart : " + heart;
     }
 }
