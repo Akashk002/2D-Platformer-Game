@@ -5,14 +5,16 @@ using UnityEngine.SceneManagement;
 
 public class LobbyController : MonoBehaviour
 {
+    public GameObject levelSelection;
+
     public void QuitGame()
     {
         Application.Quit();
     }
 
-    public void StartGame()
+    public void OpenLevelSelection()
     {
-        SceneManager.LoadScene(1);
+        levelSelection.SetActive(true);
     }
 
 }
