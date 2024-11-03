@@ -30,6 +30,13 @@ public class EnemyController : MonoBehaviour
             startingPosition = transform.position;  // Update the starting position to where it turned
         }
     }
+    private void FlipSprite()
+    {
+        Vector3 localScale = transform.localScale;
+        localScale.x *= -1;   // Invert the X scale to flip the sprite
+        transform.localScale = localScale;
+    }
+
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.GetComponent<PlayerController>())
@@ -38,10 +45,5 @@ public class EnemyController : MonoBehaviour
         }
     }
 
-    private void FlipSprite()
-    {
-        Vector3 localScale = transform.localScale;
-        localScale.x *= -1;   // Invert the X scale to flip the sprite
-        transform.localScale = localScale;
-    }
+
 }

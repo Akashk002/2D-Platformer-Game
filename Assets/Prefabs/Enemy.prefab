@@ -10,11 +10,11 @@ GameObject:
   m_Component:
   - component: {fileID: 8666247964465394616}
   - component: {fileID: 3741140197091020686}
-  - component: {fileID: 918191369933088609}
   - component: {fileID: 918191369933088610}
-  - component: {fileID: 918191369933088613}
-  - component: {fileID: 918191369933088611}
-  m_Layer: 0
+  - component: {fileID: 1638878348}
+  - component: {fileID: 1638878346}
+  - component: {fileID: 1638878345}
+  m_Layer: 6
   m_Name: Enemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -30,7 +30,7 @@ Transform:
   m_GameObject: {fileID: 933314266486280108}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: -1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -88,27 +88,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!50 &918191369933088609
-Rigidbody2D:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 933314266486280108}
-  m_BodyType: 0
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
-  m_GravityScale: 1
-  m_Material: {fileID: 0}
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 0
 --- !u!61 &918191369933088610
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -135,7 +114,28 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.5072851, y: 0.7224271}
   m_EdgeRadius: 0
---- !u!95 &918191369933088613
+--- !u!50 &1638878348
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 933314266486280108}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
+--- !u!95 &1638878346
 Animator:
   serializedVersion: 5
   m_ObjectHideFlags: 0
@@ -156,7 +156,7 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &918191369933088611
+--- !u!114 &1638878345
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -170,4 +170,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   patrolDistance: 7
   speed: 1
-  direction: 1
+  direction: -1
