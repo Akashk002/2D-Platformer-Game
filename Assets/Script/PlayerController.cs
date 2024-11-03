@@ -18,9 +18,11 @@ public class PlayerController : MonoBehaviour
         if (scoreController.HeartOver())
         {
             this.enabled = false;
+            playerAnimator.SetTrigger("Died");
             gameOverController.PlayerDied();
         }
     }
+
 
     //Collider Variables
     private Vector2 boxColInitSize;
