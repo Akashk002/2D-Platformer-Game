@@ -9,18 +9,19 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private Animator playerAnimator;
     [SerializeField] private BoxCollider2D boxCol;
     [SerializeField] private ScoreController scoreController;
+    [SerializeField] private GameOverController gameOverController;
 
     internal void KillPlayer()
     {
         scoreController.DecreaseHeart();
 
-        if (scoreController.HeartOver()) ReloadGame();
+        if (scoreController.HeartOver())
+        {
+            this.enabled = false;
+            gameOverController.PlayerDied();
+        }
     }
 
-    void ReloadGame()
-    {
-        SceneManager.LoadScene(0);
-    }
     //Collider Variables
     private Vector2 boxColInitSize;
     private Vector2 boxColInitOffset;
