@@ -5,3 +5,10 @@ public static class Level
     public static string level3 = "Level3";
     public static string level4 = "Level4";
 }
+
+public enum LevelStatus
+{
+    Locked,
+    Unlocked,
+    Completed,
+}
