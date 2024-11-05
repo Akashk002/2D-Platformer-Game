@@ -19,6 +19,12 @@ public class LevelLoader : MonoBehaviour
 
     private void OnClick()
     {
+        if (levelName == "Lobby")
+        {
+            SceneManager.LoadScene(levelName);
+            return;
+        }
+
         switch (LevelManager.Instance.GetLevelStatus(levelName))
         {
             case LevelStatus.Locked:

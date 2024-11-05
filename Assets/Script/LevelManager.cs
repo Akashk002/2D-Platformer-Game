@@ -44,8 +44,6 @@ public class LevelManager : MonoBehaviour
         {
             SetLevelStatus(levels[nextLevel], LevelStatus.Unlocked);
         }
-
-        SceneManager.LoadScene(0);
     }
 
     public LevelStatus GetLevelStatus(string levelName)

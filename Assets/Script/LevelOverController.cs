@@ -4,10 +4,12 @@ using UnityEngine;
 
 public class LevelOverController : MonoBehaviour
 {
+    public GameObject levelComplete;
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.GetComponent<PlayerController>())
         {
+            levelComplete.SetActive(true);
             LevelManager.Instance.MarkedLevelComplete();
         }
     }
