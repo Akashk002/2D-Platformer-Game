@@ -68,10 +68,15 @@ public class PlayerController : MonoBehaviour
 
     private void PlayerMovement(float horizontal, float vertical)
     {
-        Vector2 pos = transform.position;
-        pos.x += speed * horizontal * Time.deltaTime;
+        if (horizontal != 0)
+        {
+            Vector2 pos = transform.position;
+            pos.x += speed * horizontal * Time.deltaTime;
 
-        transform.position = pos;
+            transform.position = pos;
+
+            AudioManager.Instance.Play(SoundType.PlayerMove);
+        }
 
         if ((vertical > 0 || Input.GetKey(KeyCode.Space)) && isGrounded)
         {

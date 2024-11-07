@@ -10,10 +10,12 @@ public class LobbyController : MonoBehaviour
     public void QuitGame()
     {
         Application.Quit();
+        AudioManager.Instance.Play(SoundType.ButtonClick);
     }
 
     public void OpenLevelSelection()
     {
+        AudioManager.Instance.Play(SoundType.ButtonClick);
         levelSelection.SetActive(true);
     }
 

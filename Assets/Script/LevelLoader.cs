@@ -39,5 +39,7 @@ public class LevelLoader : MonoBehaviour
             default:
                 break;
         }
+
+        AudioManager.Instance.Play(SoundType.ButtonClick);
     }
 }
