@@ -41,6 +41,7 @@ public class EnemyController : MonoBehaviour
     {
         if (collision.gameObject.GetComponent<PlayerController>())
         {
+            AudioManager.Instance.Play(SoundType.EnemyCollide);
             collision.gameObject.GetComponent<PlayerController>().KillPlayer();
         }
     }

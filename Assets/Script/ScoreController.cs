@@ -10,6 +10,8 @@ public class ScoreController : MonoBehaviour
     public TMP_Text heartText;
     public int score, heart = 3;
 
+    public List<GameObject> heartImageList = new List<GameObject>();
+
     // Start is called before the first frame update
     void Start()
     {
@@ -39,7 +41,11 @@ public class ScoreController : MonoBehaviour
 
     void RefreshUI()
     {
-        scoreText.text = "Score : " + score;
-        heartText.text = "Heart : " + heart;
+        scoreText.text = score.ToString();
+
+        for (int i = 0; i < heartImageList.Count; i++)
+        {
+            heartImageList[i].SetActive(i < heart);
+        }
     }
 }

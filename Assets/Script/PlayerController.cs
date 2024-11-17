@@ -10,6 +10,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private BoxCollider2D boxCol;
     [SerializeField] private ScoreController scoreController;
     [SerializeField] private GameOverController gameOverController;
+    [SerializeField] private bool isCrouch;
 
     internal void KillPlayer()
     {
@@ -32,7 +33,7 @@ public class PlayerController : MonoBehaviour
 
     public void PickUpKey()
     {
-        scoreController.IncreaseScore(10);
+        scoreController.IncreaseScore(1);
     }
 
     public float jumpForce;
@@ -51,43 +52,51 @@ public class PlayerController : MonoBehaviour
     {
         float horizontal = Input.GetAxis("Horizontal");
         //float vertical = Input.GetAxisRaw("Jump");
-        float vertical = Input.GetAxisRaw("Jump");
-        PlayerMovementAnimation(horizontal, vertical);
-        PlayerMovement(horizontal, vertical);
+        bool jump = Input.GetKeyDown(KeyCode.Space);
+        PlayerMovementAnimation(horizontal, jump);
+        PlayerMovement(horizontal, jump);
 
-        if (Input.GetKey(KeyCode.LeftControl))
+        if (Input.GetKeyDown(KeyCode.LeftControl))
         {
-            Crouch(true);
-        }
-        else
-        {
-            Crouch(false);
-        }
+            Debug.Log("isCrouch - " + isCrouch);
 
+            isCrouch = !isCrouch;
+
+            Crouch(isCrouch);
+        }
     }
 
-    private void PlayerMovement(float horizontal, float vertical)
+    private void PlayerMovement(float horizontal, bool jump)
     {
+        if (isCrouch) return;
+
         if (horizontal != 0)
         {
             Vector2 pos = transform.position;
             pos.x += speed * horizontal * Time.deltaTime;
 
             transform.position = pos;
-
-            AudioManager.Instance.Play(SoundType.PlayerMove);
         }
 
-        if ((vertical > 0 || Input.GetKey(KeyCode.Space)) && isGrounded)
+        if (jump && isGrounded)
         {
-            rigidbody2D.AddForce(new Vector2(0, jumpForce), ForceMode2D.Force);
+            rigidbody2D.AddForce(new Vector2(0, jumpForce * 1000), ForceMode2D.Force);
         }
 
     }
 
-    private void PlayerMovementAnimation(float horizontal, float vertical)
+    private void PlayerMovementAnimation(float horizontal, bool jump)
     {
-        playerAnimator.SetFloat("Speed", Mathf.Abs(horizontal));
+        if (isCrouch) return;
+
+        if (horizontal != 0 && isGrounded)
+        {
+            playerAnimator.SetBool("Speed", true);
+        }
+        else
+        {
+            playerAnimator.SetBool("Speed", false);
+        }
 
         Vector2 scale = transform.localScale;
 
@@ -102,7 +111,7 @@ public class PlayerController : MonoBehaviour
         }
         transform.localScale = scale;
 
-        if (vertical > 0 && isGrounded)
+        if (jump && isGrounded)
         {
             playerAnimator.SetBool("Jump", true);
         }
@@ -116,24 +125,22 @@ public class PlayerController : MonoBehaviour
     {
         if (crouch == true)
         {
-            float offX = -0.12494f;     //Offset X
-            float offY = 0.61027f;      //Offset Y
+            float offX = -0.12494f;
+            float offY = 0.61027f;
 
-            float sizeX = 0.8923f;     //Size X
-            float sizeY = 1.3452f;     //Size Y
+            float sizeX = 0.8923f;
+            float sizeY = 1.3452f;
 
-            boxCol.size = new Vector2(sizeX, sizeY);   //Setting the size of collider
-            boxCol.offset = new Vector2(offX, offY);   //Setting the offset of collider
+            boxCol.size = new Vector2(sizeX, sizeY);
+            boxCol.offset = new Vector2(offX, offY);
         }
 
         else
         {
-            //Reset collider to initial values
             boxCol.size = boxColInitSize;
             boxCol.offset = boxColInitOffset;
         }
 
-        //Play Crouch animation
         playerAnimator.SetBool("Crouch", crouch);
     }
 

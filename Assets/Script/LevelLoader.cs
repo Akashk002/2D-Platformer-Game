@@ -19,6 +19,8 @@ public class LevelLoader : MonoBehaviour
 
     private void OnClick()
     {
+        AudioManager.Instance.Play(SoundType.ButtonClick);
+
         if (levelName == "Lobby")
         {
             SceneManager.LoadScene(levelName);
@@ -39,7 +41,5 @@ public class LevelLoader : MonoBehaviour
             default:
                 break;
         }
-
-        AudioManager.Instance.Play(SoundType.ButtonClick);
     }
 }

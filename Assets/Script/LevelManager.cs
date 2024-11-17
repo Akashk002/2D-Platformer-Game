@@ -57,9 +57,4 @@ public class LevelManager : MonoBehaviour
 
         Debug.Log("levelName - " + levelName + "," + levelStatus);
     }
-
-
-
-
-
 }

@@ -3,14 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class GameOverController : MonoBehaviour
+public class GamePauseController : MonoBehaviour
 {
-    public void PlayerDied()
+    // Start is called before the first frame update
+    void Start()
     {
-        gameObject.SetActive(true);
-        AudioManager.Instance.Play(SoundType.GameOver);
-    }
 
+    }
     public void ReloadGame()
     {
         AudioManager.Instance.Play(SoundType.ButtonClick);

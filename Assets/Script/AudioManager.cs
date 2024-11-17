@@ -45,7 +45,6 @@ public class AudioManager : MonoBehaviour
     {
         if (!isMute)
         {
-            BGSound.clip = GetSoundClip(SoundType.Music);
             BGSound.Play();
         }
     }
@@ -77,7 +76,9 @@ public class Sound
 public enum SoundType
 {
     ButtonClick,
+    EnemyCollide,
     Collection,
-    PlayerMove,
-    Music,
+    Pause,
+    GameOver,
+    GameComplete
 }

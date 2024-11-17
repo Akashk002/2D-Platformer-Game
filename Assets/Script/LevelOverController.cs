@@ -9,6 +9,7 @@ public class LevelOverController : MonoBehaviour
     {
         if (collision.gameObject.GetComponent<PlayerController>())
         {
+            AudioManager.Instance.Play(SoundType.GameComplete);
             levelComplete.SetActive(true);
             LevelManager.Instance.MarkedLevelComplete();
         }
